@@ -1,0 +1,54 @@
+include:
+- ./src/function.sh
+kind: ArchiveUploadSpec
+name: function-sh-szl7
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: run-js-2b198596-c4ec-441d-9729-b1fcb0942ad9
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://function-sh-szl7
+  environment:
+    name: v8
+    namespace: default
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2022-05-30T22:13:12Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: run-js
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: v8
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    packageref:
+      name: run-js-2b198596-c4ec-441d-9729-b1fcb0942ad9
+      namespace: default
+  requestsPerPod: 1
+  resources: {}

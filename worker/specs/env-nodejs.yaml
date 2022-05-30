@@ -1,0 +1,30 @@
+apiVersion: fission.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  name: nodejs
+  namespace: default
+spec:
+  builder:
+    container:
+      name: ""
+      resources: {}
+  imagepullsecret: ""
+  keeparchive: false
+  poolsize: 3
+  resources: {}
+  runtime:
+    image: fission/node-env
+    podspec:
+      containers:
+        - name: v8
+          image: minivera/v8-env:latest
+          volumeMounts:
+            - name: code-volume
+              mountPath: /etc/code
+              readOnly: true
+      volumes:
+        - name: code-volume
+          persistentVolumeClaim:
+            claimName: code-volume-claim
+  version: 1

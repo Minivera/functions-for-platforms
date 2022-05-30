@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: code-volume
+  namespace: fission-function
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  hostPath:
+    path: /data/code-volume/
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: code-volume-claim
+  namespace: fission-function
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
