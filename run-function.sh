@@ -2,5 +2,6 @@
 
 export FISSION_ROUTER=$(minikube ip):$(kubectl -n fission get svc router -o jsonpath='{...nodePort}')
 
-curl -XPOST -d '{ "content": "console.log(\"Hello, World!\")" }' "http://$FISSION_ROUTER/upload"
-curl -XPOST -k -d 'console.log("Hello, World!")' "http://$FISSION_ROUTER/run-isolated"
+fileid=$(curl -XPOST "http://$FISSION_ROUTER/upload" -H "Content-Type: text/plain" -d 'console.log("Hello, World!")' | sed 's/.*"id":\([^}]*\).*/\1/')
+
+curl -XPOST -k -d "$fileid" "http://$FISSION_ROUTER/execute"

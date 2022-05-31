@@ -20,7 +20,7 @@ const hashContent = (content) => {
 };
 
 module.exports = async function (context) {
-    const fileContent = context.request.body.content;
+    const fileContent = context.request.body;
 
     console.log(`Received function "${fileContent}", hashing.`);
     const fileHash = hashContent(fileContent);
