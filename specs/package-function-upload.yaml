@@ -1,0 +1,25 @@
+include:
+- ./dist/function-upload.zip
+kind: ArchiveUploadSpec
+name: dist-function-upload-zip-7mqE
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: function-upload
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: nodejs
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://dist-function-upload-zip-7mqE
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-05-31T15:01:20Z"

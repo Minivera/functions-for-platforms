@@ -34,12 +34,6 @@ node_modules
 # Typings
 typings/
 
-# Typescript
-src/**/*.js
-src/**/*.js.map
-test/**/*.js
-test/**/*.js.map
-
 # Test
 /.tmp
 /.nyc_output

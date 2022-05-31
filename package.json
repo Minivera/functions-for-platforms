@@ -2,16 +2,21 @@
   "name": "functions-for-platforms",
   "version": "1.0.0",
   "description": "Node implementation of the workers-for-platform service from CloudFlare",
+  "engines": {
+    "node": ">=12"
+  },
+  "author": "",
+  "license": "ISC",
   "scripts": {
-    "start": "npm run barrels && tsnd --inspect --ignore-watch node_modules --respawn --transpile-only -r tsconfig-paths/register worker/src/index.ts",
+    "apply": "fission spec apply --wait",
+    "apply:watch": "fission spec apply --watch",
+    "build": "rm -rf dist && mkdir dist && npm run build:upload",
+    "build:upload": "zip -j ./dist/function-upload.zip ./src/function-upload.js package.json",
     "test:lint": "eslint '**/*.{ts,js}'",
     "test:lint:fix": "eslint '**/*.{ts,js}' --fix"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-  },
-  "main": "worker/src/index.ts",
-  "author": "",
-  "license": "ISC"
+    "prettier": "^2.6.2"
+  }
 }

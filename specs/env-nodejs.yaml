@@ -6,9 +6,11 @@ metadata:
   namespace: default
 spec:
   builder:
+    command: build
     container:
       name: ""
       resources: {}
+    image: fission/node-builder
   imagepullsecret: ""
   keeparchive: false
   poolsize: 3
@@ -17,14 +19,13 @@ spec:
     image: fission/node-env
     podspec:
       containers:
-        - name: v8
-          image: minivera/v8-env:latest
+        - name: nodejs
+          image: fission/node-env:latest
           volumeMounts:
             - name: code-volume
               mountPath: /etc/code
-              readOnly: true
       volumes:
         - name: code-volume
           persistentVolumeClaim:
             claimName: code-volume-claim
-  version: 1
+  version: 2
