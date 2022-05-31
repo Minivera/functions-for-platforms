@@ -58,3 +58,7 @@ between multiple kubernetes pods.
 # Replace v8 with nodejs to see the nodejs environment logs
 kubectl logs -l environmentName=v8 -n fission-function 
 ```
+
+## Helpful links
+- https://gist.github.com/sanketsudake/cd9dc79296f2a8099d10342842d4f649
+- https://medium.com/swlh/how-to-run-locally-built-docker-images-in-kubernetes-b28fbc32cc1d
